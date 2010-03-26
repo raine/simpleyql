@@ -1,4 +1,3 @@
 = SimpleYQL
 
 See simpleyql.js for examples
-
