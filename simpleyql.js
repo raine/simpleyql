@@ -92,9 +92,17 @@ SimpleYQL = function() {
         console.debug(params);
       };
 
-      var uri = helpers.toURI(yql_base_uri, params) + "&callback=?";
-      jQuery.getJSON(uri, function(data) {
+      window['syqlcb'] = function(data) {
         callback(data.query.results);
+        delete window['syqlcb'];
+      }
+
+      var uri = helpers.toURI(yql_base_uri, params) ;
+      jQuery.ajax({
+        url: uri,
+        dataType: 'jsonp',
+        cache: 'true',
+        jsonpCallback: 'syqlcb'
       });
     }
   }
