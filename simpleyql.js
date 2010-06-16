@@ -97,7 +97,7 @@ SimpleYQL = function() {
         url: uri,
         dataType: 'jsonp',
         cache: 'true',
-        success: function() {
+        success: function(data) {
           callback(data.query.results);
         }
       });
