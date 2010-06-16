@@ -98,7 +98,14 @@ SimpleYQL = function() {
         dataType: 'jsonp',
         cache: 'true',
         success: function(data) {
-          callback(data.query.results);
+          try {
+            callback(data.query.results);
+          } catch(e) {
+            callback(null);
+          }
+        },
+        error: function(data) {
+          callback(null);
         }
       });
     }
